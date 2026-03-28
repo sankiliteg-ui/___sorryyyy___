@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="theme-color" content="#0a0a14"/>
+  <title>Sorry Ankku Di 💙</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Hind:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0a0a14;
+      --blue-glow: #3a7bd5;
+      --blue-light: #6faef7;
+      --silver: #c8d8f0;
+      --white: #f0f6ff;
+      --gold: #e0c97f;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      font-family: 'Hind', sans-serif;
+      color: var(--white);
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* STARS */
+    .stars-wrap { position:fixed; inset:0; z-index:0; pointer-events:none; }
+    .star {
+      position:absolute; border-radius:50%; background:#fff;
+      animation: twinkle var(--d) ease-in-out infinite;
+      animation-delay: var(--dl);
+    }
+    @keyframes twinkle {
+      0%,100%{ opacity:.08; } 50%{ opacity:.85; }
+    }
+
+    /* FLOATING HEARTS */
+    .hearts-wrap { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+    .hf {
+      position:absolute; bottom:-30px; left:var(--l);
+      font-size:var(--fs); opacity:0;
+      animation: floatUp var(--dur) linear infinite;
+      animation-delay: var(--dl);
+    }
+    @keyframes floatUp {
+      0%  { opacity:0; transform:translateY(0) rotate(0deg); }
+      8%  { opacity:.45; }
+      88% { opacity:.2; }
+      100%{ opacity:0; transform:translateY(-105vh) rotate(300deg); }
+    }
+
+    /* BLOBS */
+    .blob { position:fixed; border-radius:50%; pointer-events:none; z-index:0; }
+    .blob-1 {
+      width:min(360px,90vw); height:min(360px,90vw);
+      top:-80px; right:-80px;
+      background:radial-gradient(circle, rgba(58,123,213,.13) 0%, transparent 70%);
+    }
+    .blob-2 {
+      width:min(300px,80vw); height:min(300px,80vw);
+      bottom:-90px; left:-70px;
+      background:radial-gradient(circle, rgba(224,201,127,.07) 0%, transparent 70%);
+    }
+
+    /* LAYOUT */
+    .container {
+      position:relative; z-index:1;
+      max-width:680px; margin:0 auto;
+      padding: clamp(36px,8vw,68px) clamp(16px,5vw,32px) clamp(56px,10vw,88px);
+    }
+
+    /* HEADER */
+    .header { text-align:center; margin-bottom:clamp(32px,8vw,52px); animation:fadeDown .9s ease both; }
+    @keyframes fadeDown {
+      from{ opacity:0; transform:translateY(-22px); }
+      to  { opacity:1; transform:translateY(0); }
+    }
+    .to-label {
+      font-size:clamp(10px,2.8vw,13px); letter-spacing:3px;
+      text-transform:uppercase; color:var(--blue-light); margin-bottom:12px; font-weight:300;
+    }
+    .name-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(42px,13vw,80px); font-weight:700;
+      background:linear-gradient(135deg,var(--white) 0%,var(--blue-light) 50%,var(--gold) 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      line-height:1.1; margin-bottom:10px;
+    }
+    .subtitle {
+      font-family:'Playfair Display',serif; font-style:italic;
+      font-size:clamp(14px,4vw,18px); color:var(--silver); opacity:.8;
+    }
+    .divider {
+      width:70px; height:2px;
+      background:linear-gradient(90deg,transparent,var(--blue-glow),transparent);
+      margin:18px auto;
+    }
+
+    /* CARDS */
+    .card {
+      background:linear-gradient(135deg,rgba(13,27,62,.88) 0%,rgba(26,58,110,.62) 100%);
+      border:1px solid rgba(106,174,247,.18); border-radius:18px;
+      padding:clamp(20px,6vw,36px) clamp(16px,5vw,34px);
+      margin-bottom:clamp(16px,4vw,26px);
+      position:relative; overflow:hidden;
+      opacity:0; transform:translateY(26px);
+      transition:opacity .55s ease, transform .55s ease;
+    }
+    .card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:1px;
+      background:linear-gradient(90deg,transparent,var(--blue-light),transparent);
+    }
+    .promise-card {
+      background:linear-gradient(135deg,rgba(58,123,213,.14) 0%,rgba(13,27,62,.92) 100%);
+      border:1px solid rgba(224,201,127,.28); border-radius:18px;
+      padding:clamp(26px,7vw,44px) clamp(16px,5vw,34px);
+      margin-bottom:clamp(16px,4vw,26px); text-align:center;
+      opacity:0; transform:translateY(26px);
+      transition:opacity .55s ease, transform .55s ease;
+    }
+    .glow-quote {
+      text-align:center;
+      padding:clamp(26px,7vw,44px) clamp(6px,3vw,20px);
+      opacity:0; transform:translateY(26px);
+      transition:opacity .55s ease, transform .55s ease;
+    }
+    .signature {
+      text-align:center;
+      padding:clamp(26px,6vw,44px) 0 clamp(14px,4vw,22px);
+      opacity:0; transform:translateY(26px);
+      transition:opacity .55s ease, transform .55s ease;
+    }
+    .card.vis,.promise-card.vis,.glow-quote.vis,.signature.vis {
+      opacity:1; transform:translateY(0);
+    }
+
+    .card-emoji { font-size:clamp(24px,7vw,32px); margin-bottom:12px; display:block; }
+    .card-heading {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(17px,5vw,22px); color:var(--blue-light);
+      margin-bottom:11px; font-weight:700;
+    }
+    .card-text {
+      font-size:clamp(14px,4vw,17px); line-height:1.85;
+      color:var(--silver); font-weight:300;
+    }
+    .hindi { color:var(--white); font-weight:400; }
+
+    .promise-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(19px,5.5vw,26px); color:var(--gold); margin-bottom:16px;
+    }
+    .promise-text {
+      font-size:clamp(14px,4.2vw,18px); line-height:2;
+      color:var(--white); font-style:italic; font-family:'Playfair Display',serif;
+    }
+
+    .big-quote {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(16px,4.5vw,26px); line-height:1.75;
+      color:var(--white); font-style:italic;
+      text-shadow:0 0 28px rgba(111,174,247,.35);
+    }
+    .quote-author {
+      margin-top:13px; color:var(--blue-light);
+      font-size:clamp(11px,3vw,14px); letter-spacing:2px;
+    }
+
+    .sig-from {
+      font-size:clamp(10px,3vw,13px); letter-spacing:3px;
+      text-transform:uppercase; color:var(--silver); opacity:.6; margin-bottom:8px;
+    }
+    .sig-name {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(24px,7vw,34px); font-style:italic;
+      background:linear-gradient(135deg,var(--blue-light),var(--gold));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .heart-pulse {
+      display:inline-block; font-size:clamp(22px,6vw,30px); margin-top:10px;
+      animation:pulse 1.3s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.28);} }
+  </style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="stars-wrap" id="sw"></div>
+<div class="hearts-wrap" id="hw"></div>
+
+<div class="container">
+
+  <div class="header">
+    <p class="to-label">A heartfelt message for</p>
+    <h1 class="name-title">Ankku Di</h1>
+    <p class="subtitle">Dil se... sirf aapke liye 💙</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="card">
+    <span class="card-emoji">🙏</span>
+    <h2 class="card-heading">Maafi chahta hoon...</h2>
+    <p class="card-text hindi">
+      Di, agar mujhse koi galti hui ho — jaane ya anjaane —
+      toh dil se maafi maangta hoon. Meri niyat kabhi buri nahi thi,
+      par agar mere kisi baat ya kaam se aapko takleef hui,
+      toh uski poori zimmedari meri hai.
+    </p>
+  </div>
+
+  <div class="card">
+    <span class="card-emoji">💭</span>
+    <h2 class="card-heading">Jo dil mein hai...</h2>
+    <p class="card-text hindi">
+      Aap chahe mujhe block kar do, life se nikal do —
+      par mai silently aapko nahi chodne wala.
+      Kyunki kuch rishte sirf phone mein nahi hote,
+      woh dil mein rehte hain. Aur aap mere dil mein hain, Di.
+    </p>
+  </div>
+
+  <div class="card">
+    <span class="card-emoji">🌙</span>
+    <h2 class="card-heading">Yaadein kabhi nahi jaatein</h2>
+    <p class="card-text hindi">
+      Jo waqt, jo baatein, jo haseen lamhe humne share kiye —
+      woh mere saath hamesha rahenge. Koi delete button
+      unhe mita nahi sakta. Aap mera ek ahem hissa ho,
+      aur last tak rahogi.
+    </p>
+  </div>
+
+  <div class="promise-card">
+    <h2 class="promise-title">✨ Mera Vaada ✨</h2>
+    <p class="promise-text">
+      "Main aapko kabhi nahi bhulunga,<br/>
+      chahe kuch bhi ho jaaye.<br/>
+      Silently... hamesha... last tak."
+    </p>
+  </div>
+
+  <div class="glow-quote">
+    <p class="big-quote">
+      "Kuch log zindagi mein itne khaas hote hain<br/>
+      ki unhe bhulana possible hi nahi hota —<br/>
+      aap unhi mein se ek hain, Ankku Di."
+    </p>
+    <p class="quote-author">— Dil ki awaz</p>
+  </div>
+
+  <div class="signature">
+    <p class="sig-from">With all my heart, from</p>
+    <p class="sig-name">Aapka TUGGU 💙</p>
+    <div><span class="heart-pulse">💙</span></div>
+  </div>
+
+</div>
+
+<script>
+  /* Stars — fewer on small screens */
+  (function(){
+    const sw = document.getElementById('sw');
+    const n = window.innerWidth < 480 ? 50 : 95;
+    const f = document.createDocumentFragment();
+    for(let i=0;i<n;i++){
+      const el = document.createElement('div');
+      el.className='star';
+      const sz=(Math.random()*2+0.5).toFixed(1);
+      el.style.cssText=
+        'width:'+sz+'px;height:'+sz+'px;'+
+        'top:'+(Math.random()*100).toFixed(1)+'%;'+
+        'left:'+(Math.random()*100).toFixed(1)+'%;'+
+        '--d:'+(2+Math.random()*5).toFixed(1)+'s;'+
+        '--dl:'+(Math.random()*6).toFixed(1)+'s';
+      f.appendChild(el);
+    }
+    sw.appendChild(f);
+  })();
+
+  /* Floating hearts — throttled for Android */
+  (function(){
+    const hw = document.getElementById('hw');
+    const emojis=['💙','✨','🌙','💫','⭐','🌟'];
+    const MAX = window.innerWidth < 480 ? 8 : 14;
+    function make(){
+      if(hw.childElementCount>=MAX) return;
+      const el=document.createElement('span');
+      el.className='hf';
+      el.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+      const dur=(9+Math.random()*8).toFixed(1);
+      el.style.cssText=
+        '--l:'+(Math.random()*94).toFixed(1)+'%;'+
+        '--fs:'+(12+Math.random()*11).toFixed(0)+'px;'+
+        '--dur:'+dur+'s;--dl:0s';
+      hw.appendChild(el);
+      setTimeout(()=>el.remove(), parseFloat(dur)*1000+300);
+    }
+    for(let i=0;i<5;i++) setTimeout(make, i*600);
+    setInterval(make, 1600);
+  })();
+
+  /* Scroll-reveal with IntersectionObserver */
+  (function(){
+    const items=document.querySelectorAll('.card,.promise-card,.glow-quote,.signature');
+    if(!('IntersectionObserver' in window)){
+      items.forEach(e=>e.classList.add('vis')); return;
+    }
+    const io=new IntersectionObserver(entries=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){ en.target.classList.add('vis'); io.unobserve(en.target); }
+      });
+    },{threshold:0.1});
+    items.forEach(e=>io.observe(e));
+  })();
+</script>
+</body>
+</html>
